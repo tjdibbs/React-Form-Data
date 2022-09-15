@@ -21,11 +21,19 @@ function App() {
   // });
 
   const handleChange = (e) => {
-    let value = e.target.value;
+    let val = e.target.value; // to get what use is typing
     let name = e.target.name; // "username" | "password"
 
-    // updating the state of the formData
-    setFormData({ ...formData, [name]: value });
+    // if(name = "username"){
+    //   setFormData({ ...formData, username: val });
+    // }
+
+    // else if (name === "password") {
+    //   setFormData({ ...formData, password: val });
+    // }
+
+    // updating the state of the formData dynamically
+    setFormData({ ...formData, [name]: val });
   };
 
   const handleSubmit = (e) => {
@@ -35,7 +43,7 @@ function App() {
     setFormData({ username: "", password: "" });
   };
 
-  console.log({ data });
+  console.log({ formData });
 
   return (
     <div className="App">
@@ -72,6 +80,8 @@ function App() {
           </div>
         </form>
 
+        <h6>Form Data Array</h6>
+        <hr />
         {data.map((formdata, index) => {
           return (
             <div className="div" key={index}>
