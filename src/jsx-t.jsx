@@ -33,6 +33,22 @@ const employeesData = [
 //   </div>,
 // ];
 
+function getRandomString() {
+  let alAphabet = "abcdefghijklmnopqrstuvwxyz123456789_)(*&^%$#@!";
+  let wordLength = Math.floor(Math.random() * 15) + 5;
+  let word = "";
+
+  while (wordLength > 0) {
+    let letterToAddIndex = Math.floor(Math.random() * 46);
+    let letter = alAphabet.at(letterToAddIndex);
+
+    word = word + letter; // "b" + "t" = "bt";
+    wordLength = wordLength - 1;
+  }
+
+  return word;
+}
+
 const Form = () => {
   const [employees, setEmployees] = React.useState(employeesData);
 
