@@ -33,11 +33,6 @@ function App() {
     // }
 
     // updating the state of the formData dynamically
-<<<<<<< HEAD
-=======
-    // You can only override in object, by overriding the
-    // fields value
->>>>>>> 53c26124557b32a79e1675a71ddc06c56fb1e290
     setFormData({ ...formData, [name]: val });
   };
 

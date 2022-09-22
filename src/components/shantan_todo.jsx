@@ -1,6 +1,4 @@
 import React from "react";
-import { useState } from "react";
-import todos from "./todos";
 import "./todo.css";
 
 const ToDo = () => {
@@ -28,24 +26,24 @@ const ToDo = () => {
   console.log({ data: data, task: task });
 
   return (
-    <div className='todo-container'>
+    <div className="todo-container">
       <h1>TODO FORM</h1>
 
-      <form action='' className='form' onSubmit={handleSubmit}>
-        <div className='form-group'>
+      <form action="" className="form" onSubmit={handleSubmit}>
+        <div className="form-group">
           <input
-            className='add-task'
-            type='text'
-            placeholder='Add Task'
-            name='todo'
+            className="add-task"
+            type="text"
+            placeholder="Add Task"
+            name="todo"
             onChange={handleChange}
           />
-          <button className='todo-btn' type='submit'>
+          <button className="todo-btn" type="submit">
             Add
           </button>
         </div>
 
-        <div className='data-container'>{data.map()}</div>
+        <div className="data-container">{data.map()}</div>
       </form>
     </div>
   );
