@@ -8,7 +8,16 @@ const Todo = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    setTodos([...todos, todo]);
+
+    let check = todos.some((item) => item === todo);
+
+    if (check == true) {
+      alert("The task is already added!.");
+      return;
+    } else {
+      setTodos([...todos, todo]);
+      setTodo("");
+    }
   };
 
   const onChange = (e) => {
@@ -30,12 +39,17 @@ const Todo = () => {
   }, [todos]);
 
   return (
-    <div className="todo-container">
+    <div className="todo-container" style={{ margin: "10px", marginTop: 2 }}>
       <div className="title">Simple Todo</div>
       <div className="main">
         <form action="#" onSubmit={onSubmit} className="form">
           <div className="form-group">
-            <input type="text" className="form-control" onChange={onChange} />
+            <input
+              type="text"
+              value={todo}
+              className="form-control"
+              onChange={onChange}
+            />
           </div>
           <button className="add-btn" type="submit">
             Add To Todo

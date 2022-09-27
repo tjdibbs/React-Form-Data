@@ -8,6 +8,7 @@ const Todo = (props) => {
 
   const [editing, setEditing] = React.useState(false);
   const [editingText, setEditingText] = React.useState("");
+  const [checked, setChecked] = React.useState(false);
 
   const handleDelete = (currentTodo, id) => {
     let newTodos = todos.filter((_todo, _index) => {
@@ -45,8 +46,18 @@ const Todo = (props) => {
     setEditingText(e.target.innerText);
   };
 
+  const Checked = (e) => {
+    setChecked(e.target.checked);
+  };
+
   return (
     <div className="todo" key={index}>
+      <input
+        type="checkbox"
+        onChange={Checked}
+        name={"complete" + index}
+        id={"task" + index}
+      />
       <span
         dangerouslySetInnerHTML={{ __html: todo }}
         style={
@@ -60,28 +71,37 @@ const Todo = (props) => {
                 background: "#fff",
                 color: "#00000080",
               }
-            : undefined
+            : {
+                flexGrow: 1,
+                textDecoration: checked ? "line-through" : "none",
+              }
         }
         onKeyUp={editing ? handleChange : undefined}
         className="label"
         contentEditable={editing}
       />
-      <div className="action-btn">
-        <button
-          className="edit"
-          onClick={editing ? () => Update(todo, index) : () => handleEdit(todo)}
-        >
-          {/* If editing the icon will change to update icons, otherwise the icon will be edit icon */}
-          {editing ? (
-            <span className="material-symbols-outlined">update</span>
-          ) : (
-            <span className="material-symbols-outlined">edit</span>
-          )}
-        </button>
-        <button className="delete" onClick={() => handleDelete(todo, index)}>
-          <span className="material-symbols-outlined">delete</span>
-        </button>
-      </div>
+      {checked ? (
+        <i>Completed</i>
+      ) : (
+        <div className="action-btn">
+          <button
+            className="edit"
+            onClick={
+              editing ? () => Update(todo, index) : () => handleEdit(todo)
+            }
+          >
+            {/* If editing the icon will change to update icons, otherwise the icon will be edit icon */}
+            {editing ? (
+              <span className="material-symbols-outlined">update</span>
+            ) : (
+              <span className="material-symbols-outlined">edit</span>
+            )}
+          </button>
+          <button className="delete" onClick={() => handleDelete(todo, index)}>
+            <span className="material-symbols-outlined">delete</span>
+          </button>
+        </div>
+      )}
     </div>
   );
 };
